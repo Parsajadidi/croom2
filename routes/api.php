@@ -15,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('messages', [messageController::class, 'message']);
+Route::post('messages', [messageController::class, 'storeMessage']);
+Route::get('messages',[messageController::class, 'index']);

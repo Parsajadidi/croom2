@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\Message;
 use Illuminate\Http\Request;
 
 class messageController extends Controller
@@ -10,8 +9,23 @@ class messageController extends Controller
 
     public function message(Request $request)
     {
-        event(new Message($request->input('username'), $request->input('message')));
+
+
+        \app\models\Message::create([
+            'username' => $request->input('username'),
+            'body' => $request->input('message')
+
+        ]);
+
+        event(new \app\events\Message($request->input('username'), $request->input('message')));
 
         return [];
+    }
+
+    public function index()
+    {
+      $message =  \app\models\Message::all();
+
+        return response()->json($message);
     }
 }
