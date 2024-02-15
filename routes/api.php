@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/messages', [messageController::class , 'index']);
+Route::post('messages', [messageController::class, 'message']);
